@@ -3,18 +3,28 @@
   "version": "1.0.0",
   "description": "A modern, async-enabled Konami Code detector",
   "type": "module",
-  "main": "./src/index.js",
-  "module": "./src/index.js",
-  "exports": "./src/index.js",
+  "main": "./index.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.js",
+      "default": "./index.js"
+    }
+  },
   "files": [
-    "src",
+    "index.js",
+    "index.d.ts",
+    "src/**/*.js",
+    "!src/**/*.test.js",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "CHANGELOG.md"
   ],
   "scripts": {
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
+    "test:coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
     "prepublishOnly": "npm test"
   },
   "keywords": [
@@ -30,12 +40,9 @@
     "cheat-code"
   ],
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=16"
   },
   "devDependencies": {
-    "@babel/core": "^7.28.4",
-    "@babel/preset-env": "^7.28.3",
-    "babel-jest": "^29.7.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0"
   },
@@ -43,19 +50,10 @@
     "testEnvironment": "jsdom",
     "transform": {},
     "testMatch": [
-      "**/src/**/*.test.js"
-    ]
-  },
-  "babel": {
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "targets": {
-            "node": "current"
-          }
-        }
-      ]
+      "**/*.test.js"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/"
     ]
   },
   "author": "Robert James Gabriel <robert_gabriel@outlook.com>",

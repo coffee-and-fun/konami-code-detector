@@ -1,6 +1,6 @@
 {
   "name": "@coffeeandfun/konami-code-detector",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A modern, async-enabled Konami Code detector",
   "type": "module",
   "main": "./index.js",
